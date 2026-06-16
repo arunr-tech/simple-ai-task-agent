@@ -1,0 +1,29 @@
+import requests
+
+def simple_agent():
+    print("🤖 AI Agent Started...\n")
+
+    try:
+        response = requests.get(
+            "https://jsonplaceholder.typicode.com/todos/1",
+            timeout=5
+        )
+
+        data = response.json()
+
+        task = data["title"]
+        status = data["completed"]
+
+        print("📌 Task:", task)
+
+        if status:
+            print("✅ Status: Completed")
+            print("🎉 Good job!")
+        else:
+            print("❌ Status: Not completed")
+            print("🔥 Keep going!")
+
+    except requests.exceptions.RequestException:
+        print("⚠️ API Error: Please check internet connection")
+
+simple_agent()
